@@ -1,17 +1,3 @@
-() => { 
-  cy.visit(baseUrl + "/main.html"); 
-  cy.get("#output").should("contain", ""); 
-
-  // First promise
-  cy.wait(3000); 
-  cy.get("#output").should("contain", "2,4"); 
-
-  // Second Promise
-  cy.wait(1000); 
-  cy.get("#output").should("contain", "4,8"); 
-}
-
-
 function getNumbers() {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -45,3 +31,15 @@ getNumbers()
   .then(evenNumbers => multiplyEvenNumbers(evenNumbers)) 
   .catch(err => console.error(err)); 
 
+()) => { 
+  cy.visit(baseUrl + "/main.html"); 
+  cy.get("#output").should("contain", ""); 
+
+  // First promise
+  cy.wait(3000); 
+  cy.get("#output").should("contain", "2,4"); 
+
+  // Second Promise
+  cy.wait(1000); 
+  cy.get("#output").should("contain", "4,8"); 
+}
