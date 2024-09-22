@@ -27,19 +27,11 @@ function multiplyEvenNumbers(numbers) {
 }
 
 getNumbers()
-  .then(numbers => filterEvenNumbers(numbers))
-  .then(evenNumbers => multiplyEvenNumbers(evenNumbers)) 
-  .catch(err => console.error(err)); 
+  .then(numbers => {
+    setTimeout(() => filterEvenNumbers(numbers), 1000);
+  })
+  .then(evenNumbers => {
+    setTimeout(() => multiplyEvenNumbers(evenNumbers), 2000);
+  })
+  .catch(err => console.error(err));
 
-()) => { 
-  cy.visit(baseUrl + "/main.html"); 
-  cy.get("#output").should("contain", ""); 
-
-  // First promise
-  cy.wait(3000); 
-  cy.get("#output").should("contain", "2,4"); 
-
-  // Second Promise
-  cy.wait(1000); 
-  cy.get("#output").should("contain", "4,8"); 
-}
