@@ -1,4 +1,17 @@
-// Function that returns a promise resolving an array of numbers after 3 seconds
+() => { 
+  cy.visit(baseUrl + "/main.html"); 
+  cy.get("#output").should("contain", ""); 
+
+  // First promise
+  cy.wait(3000); 
+  cy.get("#output").should("contain", "2,4"); 
+
+  // Second Promise
+  cy.wait(1000); 
+  cy.get("#output").should("contain", "4,8"); 
+}
+
+
 function getNumbers() {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -7,7 +20,6 @@ function getNumbers() {
   });
 }
 
-// Function to filter out odd numbers
 function filterEvenNumbers(numbers) {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -18,7 +30,6 @@ function filterEvenNumbers(numbers) {
   });
 }
 
-// Function to multiply even numbers by 2
 function multiplyEvenNumbers(numbers) {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -29,9 +40,8 @@ function multiplyEvenNumbers(numbers) {
   });
 }
 
-// Execute the promise chain
 getNumbers()
-  .then(numbers => filterEvenNumbers(numbers)) // Filter out odd numbers
-  .then(evenNumbers => multiplyEvenNumbers(evenNumbers)) // Multiply even numbers by 2
-  .catch(err => console.error(err)); // Handle any errors
+  .then(numbers => filterEvenNumbers(numbers))
+  .then(evenNumbers => multiplyEvenNumbers(evenNumbers)) 
+  .catch(err => console.error(err)); 
 
