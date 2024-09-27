@@ -8,30 +8,35 @@ function getNumbers() {
 
 function filterEvenNumbers(numbers) {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      const evenNumbers = numbers.filter(num => num % 2 === 0);
-      document.getElementById('output').innerText = evenNumbers.join(', ');
-      resolve(evenNumbers);
-    }, 1000);
+    const evenNumbers = numbers.filter(num => num % 2 === 0);
+    document.getElementById('output').innerText = evenNumbers.join(', ');
+    resolve(evenNumbers);
   });
 }
 
 function multiplyEvenNumbers(numbers) {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      const multipliedNumbers = numbers.map(num => num * 2);
-      document.getElementById('output').innerText = multipliedNumbers.join(', ');
-      resolve(multipliedNumbers);
-    }, 2000);
+    const multipliedNumbers = numbers.map(num => num * 2);
+    document.getElementById('output').innerText = multipliedNumbers.join(', ');
+    resolve(multipliedNumbers);
   });
 }
 
 getNumbers()
   .then(numbers => {
-    setTimeout(() => filterEvenNumbers(numbers), 1000);
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(numbers);
+      }, 1000);
+    });
   })
+  .then(filterEvenNumbers)
   .then(evenNumbers => {
-    setTimeout(() => multiplyEvenNumbers(evenNumbers), 2000);
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(evenNumbers);
+      }, 2000);
+    });
   })
+  .then(multiplyEvenNumbers)
   .catch(err => console.error(err));
-
