@@ -9,7 +9,7 @@ function getNumbers() {
 function filterEvenNumbers(numbers) {
   return new Promise((resolve) => {
     const evenNumbers = numbers.filter(num => num % 2 === 0);
-    document.getElementById('output').innerText = evenNumbers.join(', ');
+    document.getElementById('output').innerText = evenNumbers.join(','); // Removed space after comma
     resolve(evenNumbers);
   });
 }
@@ -17,7 +17,7 @@ function filterEvenNumbers(numbers) {
 function multiplyEvenNumbers(numbers) {
   return new Promise((resolve) => {
     const multipliedNumbers = numbers.map(num => num * 2);
-    document.getElementById('output').innerText = multipliedNumbers.join(', ');
+    document.getElementById('output').innerText = multipliedNumbers.join(','); // Removed space after comma
     resolve(multipliedNumbers);
   });
 }
